@@ -1,0 +1,26 @@
+---------------------------------------------------------------------------
+LinAlgError                               Traceback (most recent call last)
+Input In [11], in <cell line: 2>()
+      1 #create new column in dataframe that contains Mahalanobis distance for each row
+----> 2 dfclass4['mahalanobis'] = mahalanobis(x=dfclass4, data=dfclass4[['Class_id', 'BD1', 'BD2', 'BD3', 'BD4', 'BD5', 'BD6', 'BD7', 'BD8', 'BD9', 'BD10']])
+
+Input In [8], in mahalanobis(x, data, cov)
+      5 if not cov:
+      6     cov = np.cov(data.values.T)
+----> 7 inv_covmat = np.linalg.inv(cov)
+      8 left = np.dot(x_mu, inv_covmat)
+      9 mahal = np.dot(left, x_mu.T)
+
+File <__array_function__ internals>:5, in inv(*args, **kwargs)
+
+File C:\Anaconda3\lib\site-packages\numpy\linalg\linalg.py:545, in inv(a)
+    543 signature = 'D->D' if isComplexType(t) else 'd->d'
+    544 extobj = get_linalg_error_extobj(_raise_linalgerror_singular)
+--> 545 ainv = _umath_linalg.inv(a, signature=signature, extobj=extobj)
+    546 return wrap(ainv.astype(result_t, copy=False))
+
+File C:\Anaconda3\lib\site-packages\numpy\linalg\linalg.py:88, in _raise_linalgerror_singular(err, flag)
+     87 def _raise_linalgerror_singular(err, flag):
+---> 88     raise LinAlgError("Singular matrix")
+
+LinAlgError: Singular matrix
